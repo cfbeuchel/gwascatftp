@@ -1,6 +1,6 @@
 Package: gwascatftp
 Type: Package
-Title: GWAS Catalog FTP Server Interface
+Title: GWAS Catalog FTP Interface
 Version: 0.1.0
 Author: Who wrote it
 Maintainer: The package maintainer <yourself@somewhere.net>
