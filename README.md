@@ -118,9 +118,9 @@ my_mulltiple_study_accessions <- c("GCST009541", "GCST90204201")
 
 # Call the functions including the necessary lists to download the meta data
 my_meta_data <- download_multiple_accession_meta_data(
-  study_accessions = study_accessions, 
-  harmonised_list = directory_list, 
-  directory_list = harmonised_list, 
+  study_accessions = my_mulltiple_study_accessions, 
+  harmonised_list = my_harmonised_list, 
+  directory_list = my_directory_list, 
   lftp_settings = my_lftp_settings
 )
 ```
