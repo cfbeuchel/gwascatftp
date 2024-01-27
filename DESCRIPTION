@@ -2,8 +2,6 @@ Package: gwascatftp
 Type: Package
 Title: GWAS Catalog FTP Interface
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
 License: GPL (>= 3)
@@ -16,3 +14,7 @@ Imports:
     data.table,
     glue,
     yaml
+Authors@R: c(
+    person("Carl", "Beuchel", , "carl.beuchel@charite.de", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0003-3224-3894"))
+  )
