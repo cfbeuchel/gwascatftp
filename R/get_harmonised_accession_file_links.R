@@ -9,7 +9,7 @@ get_harmonised_accession_file_links <- function(
   stopifnot("Have to supply accession and list!" = (!is.na(study_accession) | all(!is.na(directory_list))))
   if (
     isFALSE(
-      is_available_harmonized(
+      is_available_harmonised(
         study_accession = study_accession,
         harmonised_list = harmonised_list
       )

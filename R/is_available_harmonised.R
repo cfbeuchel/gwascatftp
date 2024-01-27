@@ -1,5 +1,5 @@
 # is the study available harmonized?
-is_available_harmonized <- function(
+is_available_harmonised <- function(
     study_accession = NA,
     harmonised_list = NA
 ) {
