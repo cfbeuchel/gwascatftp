@@ -125,3 +125,9 @@ my_meta_data <- download_multiple_accession_meta_data(
   lftp_settings = my_lftp_settings
 )
 ```
+
+## See Also
+
+* The main package to use to query the GWAS Catalog API is {gwasrapidd}: [https://github.com/ramiromagno/gwasrapidd/](https://github.com/ramiromagno/gwasrapidd/)
+* The GWAS Catalog has extensive documentation at [https://www.ebi.ac.uk/gwas/docs](https://www.ebi.ac.uk/gwas/docs)
+* Browse the GWAS Catalog FTP Server in your browser at [https://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/](https://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/)
