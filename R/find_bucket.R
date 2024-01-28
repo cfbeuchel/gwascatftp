@@ -1,4 +1,24 @@
-# Get the bucket of an accession
+#' Find the FTP directory of a study accession
+#'
+#' For a given GWAS Catalog study accession, identify the directory containing
+#' study data on the GWAS Catalog FTP server at
+#' `https://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/`.
+#'
+#' On the GWAS Catalog FTP server, all study directories are located in
+#' subdirectories covering a range of study IDs. For example, the directory
+#' `GCST000001-GCST001000/` contains all studies whose numeric part of their ID
+#' lies between 1-1000. This function simply returns this subdirectory.
+#'
+#' @inheritParams download_all_accession_data
+#'
+#' @returns The relative path from
+#'   `ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/` of the directory
+#'   containing the data of the input study accession (e.g.
+#'   `	GCST000001-GCST001000/`).
+#'
+#' @import data.table
+#'
+#' @export
 find_bucket <- function(
     study_accession,
     directory_list = NA

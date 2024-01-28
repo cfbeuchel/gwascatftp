@@ -1,3 +1,18 @@
+#' Look up, download and parse meta-data for several study accessions
+#'
+#' Given a vector of study accessions (GWAS Catalog study IDs starting with
+#' `GCST[...]`), download all available meta data and parse them into a
+#' data.table with one row per available meta-data `yaml` file.
+#'
+#' @param study_accessions Character vector. GWAS Catalog study ID(s) to download
+#'   meta-data for. Must be an accession number beginning with “GCST”. Use the
+#'   package `{gwasrapidd}` or browse the GWAS Catalog website
+#'   (https://www.ebi.ac.uk/gwas/) to get accessions for studies you want to
+#'   download data from.
+#' @inheritParams download_all_accession_data
+#' @returns a data.table with n=`length(study_accessions)` rows. Studies with no
+#'   available meta-data will have `NA` entries for all fields.
+#' @export
 download_multiple_accession_meta_data <- function(
     study_accessions,
     harmonised_list = NA,

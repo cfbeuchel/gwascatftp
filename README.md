@@ -2,6 +2,7 @@
 # `gwascatftp` - Access the GWAS Catalog FTP server from R
 
 <!-- badges: start -->
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
 This R package provides functions to interact with the [GWAS
@@ -91,7 +92,7 @@ high-level function is `download_all_accession_data()`, that, given a GWAS
 Catalog study accession, will try to download all available files for that
 accession and return the parsed meta data when available.
 
-```
+```r
 # Supply a single accession you want to download the data from
 my_study_accession <- "GCST009541"
 

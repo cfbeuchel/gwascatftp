@@ -1,3 +1,14 @@
+#' Return parsed GWAS accession meta-data
+#'
+#' Function to parse the raw meta-data as downloaded with
+#' `get_accession_meta_data()`.
+#'
+#' @param raw_meta_data_list A named list. Should be used with the output of
+#'   `get_accession_meta_data()`
+#'
+#' @seealso [get_accession_meta_data()]
+#' @returns A data.table containing the parsed meta-data with one row per file.
+#' @export
 parse_raw_meta_data <- function(
     raw_meta_data_list
 ) {

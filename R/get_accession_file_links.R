@@ -1,4 +1,16 @@
-# Get links for non-harmonized files
+#' Find FTP links to all non-harmonised files for a GWAS Catalog study accession
+#'
+#' This function looks up and returns a vector containing FTP links to all
+#' non-harmonised files for a given GWAS Catalog study accession.  To get links
+#' to harmonised files where available, use the function
+#' [get_harmonised_accession_file_links()].
+#'
+#' @inheritParams download_all_accession_data
+#'
+#' @returns A named list containing a character string vector with the FTP links
+#'   to all non-harmonised files for the input study accession.
+#'
+#' @export
 get_accession_file_links <- function(
     study_accession,
     directory_list = NA,

@@ -1,3 +1,14 @@
+#' Download Files from the GWAS Catalog FTP Server
+#'
+#' This files takes a named list of FTP links as input and downloads all files to a local directory. To download all data for a GWAS Catalog study, most users will probably want to use `download_all_accession_data()` instead of this function.
+#'
+#' @inheritParams download_all_accession_data
+#' @inheritParams get_accession_meta_data
+#'
+#' @seealso [download_all_accession_data()]
+#'
+#' @return Nothing. Will download files into `download_directory`.
+#' @export
 download_accession_files_from_ftp <- function(
     accession_file_links,
     download_directory = NA,

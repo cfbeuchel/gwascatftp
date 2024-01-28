@@ -1,4 +1,19 @@
-# Get only the harmonised data file link or all files in the harmonised/ directory
+#' Find FTP links to all harmonised files for a GWAS Catalog study accession
+#'
+#' This function looks up and returns a vector containing FTP links to all
+#' harmonised files for a given GWAS Catalog study accession. These are all
+#' files contained in the `harmonised/` subdirectory in a study directory. To
+#' get links to non-harmonised files where available, use the function
+#' [get_accession_file_links()].
+#'
+#' @inheritParams download_all_accession_data
+#' @param list_all_files logical. `TRUE`/`FALSE` whether only the link to the
+#'   harmonised summary statistic file (which is contained in `harmonised_list`)
+#'   or all files in a study's `harmonised/` subdirectory should be returned.
+#'
+#' @returns A named list containing a character string vector with the FTP links
+#'   to all non-harmonised files for the input study accession.
+#' @export
 get_harmonised_accession_file_links <- function(
     study_accession,
     harmonised_list = NA,

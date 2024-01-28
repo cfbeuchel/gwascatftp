@@ -1,3 +1,16 @@
+#' Download a list of all sub-directories of the GWAS Catalog FTP directory
+#' `summary_statistics/`
+#'
+#' Function to get a list of all direct subdirectories of the GWAS Catalog FTP
+#' directory `https://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/`. The
+#' list is used in several functions of this package and should therefore be
+#' downloaded once to be used as input for those functions instead of
+#' downloading it with every function call.
+#'
+#' @inheritParams download_all_accession_data
+#' @returns A character vector containing all directories of
+#'   `https://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/`.
+#' @export
 get_directory_list <- function(
     lftp_settings = NA
 ) {

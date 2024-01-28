@@ -1,3 +1,26 @@
+#' Make a call to `lftp` to query the GWAS Catalog
+#'
+#' Connect to the GWAS Catalog FTP server using `lftp` and execute one or a
+#' series of commands.
+#'
+#' This function is the main interface to the `lftp` command line FTP client
+#' that is used in this package to query and download from the GWAS Catalog FTP
+#' server at `ftp://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/`.
+#' `lftp` and documentation are available from `https://lftp.yar.ru/`.
+#'
+#' @param path_from_ftp_root Character string. Per default, the `lftp` call will
+#'   connect to `ftp://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/`.
+#'   Use this value to directly connect to a subdirectory of the default path.
+#' @param lftp_command Character string. The `lftp` command to execute after
+#'   connecting to the GWAS Catalog FTP server and before quitting. See
+#'   `https://lftp.yar.ru/lftp-man.html` for available commands.
+#' @param execute_system_call Logical. Whether to execute the call to `lftp`
+#'   with `system()` or to return the character string containing the command.
+#' @inheritParams download_all_accession_data
+#'
+#' @returns The output of the `lftp` call or a character string of the `lftp`
+#'   command when `execute_system_call` is set to `FALSE`
+#' @export
 lftp_call <- function(
     path_from_ftp_root = NA,
     lftp_command = NA,
