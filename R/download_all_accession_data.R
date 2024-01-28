@@ -77,7 +77,7 @@ download_all_accession_data <- function(
   download_accession_files_from_ftp(
     accession_file_links = all_file_links,
     download_directory = download_directory,
-    create_folder = create_accession_directory,
+    create_accession_directory = create_accession_directory,
     overwrite_existing_files = overwrite_existing_files,
     lftp_settings = lftp_settings
   )
