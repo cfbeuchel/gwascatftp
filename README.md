@@ -150,5 +150,6 @@ my_meta_data <- download_multiple_accession_meta_data(
 ## See Also
 
 * The far more extensive package to query the GWAS Catalog API is {gwasrapidd}: [https://github.com/ramiromagno/gwasrapidd/](https://github.com/ramiromagno/gwasrapidd/)
+* The package {MungeSumstats} provides an interface to the [MRC IEU openGWAS Project](https://gwas.mrcieu.ac.uk/): https://github.com/neurogenomics/MungeSumstats
 * The GWAS Catalog has extensive documentation at [https://www.ebi.ac.uk/gwas/docs](https://www.ebi.ac.uk/gwas/docs)
 * Browse the GWAS Catalog FTP Server at [https://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/](https://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/)
