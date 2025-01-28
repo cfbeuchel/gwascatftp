@@ -8,7 +8,12 @@
 #' @returns Local variables named after the elements of  containing the
 #' @export
 parse_lftp_settings <- function(lftp_settings = NA){
-  stopifnot("Have to supply settings list!" = all(!is.na(lftp_settings)))
+  stopifnot("Mising required settings (`lftp_bin`, `use_proxy` or `ftp_root`)!" = all(
+    !is.na(lftp_settings$lftp_bin),
+    !is.na(lftp_settings$use_proxy),
+    !is.na(lftp_settings$ftp_root)
+    )
+    )
   for (i in seq_along(lftp_settings)) {
     assign(
       x = names(lftp_settings[i]),
