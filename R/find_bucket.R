@@ -28,6 +28,9 @@ find_bucket <- function(
       !is.na(study_accession) | all(!is.na(directory_list)))
   )
   accession <- as.numeric(gsub("GCST", "", study_accession))
+  
+  # remove dir not listing accessions
+  directory_list <- directory_list[grepl("^GCST", directory_list)]
   directory_ranges <- gsub(pattern = "GCST", "", directory_list, fixed = TRUE)
   directory_ranges <- gsub(pattern = "\\/$", "", directory_ranges)
   directory_ranges <- strsplit(directory_ranges, split = "-")

@@ -58,7 +58,7 @@ download_all_accession_data <- function(
   if(isTRUE(is_harmonized)) {
     harmonised_accession_file_links <- get_harmonised_accession_file_links(
       study_accession = study_accession,
-      harmonised_list = study_accession,
+      harmonised_list = harmonised_list,
       directory_list = directory_list,
       list_all_files = TRUE,
       lftp_settings = lftp_settings
