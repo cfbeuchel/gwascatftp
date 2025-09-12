@@ -22,8 +22,14 @@
 .onUnload <- function(libname, pkgname) {
 
   .Options$gwascatftp.ftp_proxy <- NULL
+  options(gwascatftp.ftp_proxy = NULL)
   .Options$gwascatftp.lftp_bin <- NULL
+  options(gwascatftp.lftp_bin = NULL)
   .Options$gwascatftp.use_proxy <- NULL
+  options(gwascatftp.use_proxy = NULL)
   .Options$gwascatftp.ftp_root <- NULL
+  options(gwascatftp.ftp_root = NULL)
+  
+  
   
 }
