@@ -8,8 +8,7 @@ download_accession_files_from_ftp(
   accession_file_links,
   download_directory = NA,
   create_accession_directory = FALSE,
-  overwrite_existing_files = FALSE,
-  lftp_settings = NA
+  overwrite_existing_files = FALSE
 )
 }
 \arguments{
@@ -26,8 +25,6 @@ directory named after `study_accession` should be created in
 
 \item{overwrite_existing_files}{logical. `TRUE`/`FALSE` for whether identical
 output files found in `download_directory` should be overwritten.}
-
-\item{lftp_settings}{named list. Use `create_lftp_settings()` to create.}
 }
 \value{
 Nothing. Will download files into `download_directory`.

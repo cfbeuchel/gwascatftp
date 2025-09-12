@@ -9,8 +9,6 @@
 #' @param accession_file_links A named list with a vector of character strings.
 #'   Use the output of `get_harmonised_accession_file_links()` or
 #'   `get_accession_file_links()` as the input for this function.
-#' @inheritParams download_all_accession_data
-#'
 #' @return A named list of raw and unparsed character strings containing the
 #'   content of the meta-data yaml file
 #'
@@ -18,9 +16,11 @@
 #'
 #' @export
 get_accession_meta_data <- function(
-    accession_file_links,
-    lftp_settings = NA
+    accession_file_links
 ){
+  check_lftp_settings()
+  ftp_root <- options()$gwascatftp.ftp_root
+  
   stopifnot(
     "Input must be a names list containing the accession number as name and the FTP links in the body." =
       is.list(accession_file_links) & all(!is.na(names(accession_file_links)))
@@ -34,7 +34,7 @@ get_accession_meta_data <- function(
     value = TRUE
   )
   meta_data_file_relative_path <- gsub(
-    pattern = lftp_settings$ftp_root,
+    pattern = ftp_root,
     replacement = "",
     x = meta_data_files)
   result_list <- vector(mode = "list", length = length(meta_data_file_relative_path))
@@ -43,8 +43,7 @@ get_accession_meta_data <- function(
     print_meta_data_file <- glue::glue("cat {meta_data_file}")
     meta_data_raw <- lftp_call(
       lftp_command = print_meta_data_file,
-      execute_system_call = TRUE,
-      lftp_settings = lftp_settings
+      execute_system_call = TRUE
     )
     result_list[[i]] <- meta_data_raw
     names(result_list)[i] <- accession_name

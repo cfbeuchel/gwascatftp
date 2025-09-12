@@ -7,8 +7,7 @@
 lftp_call(
   path_from_ftp_root = NA,
   lftp_command = NA,
-  execute_system_call = TRUE,
-  lftp_settings = NA
+  execute_system_call = TRUE
 )
 }
 \arguments{
@@ -22,8 +21,6 @@ connecting to the GWAS Catalog FTP server and before quitting. See
 
 \item{execute_system_call}{Logical. Whether to execute the call to `lftp`
 with `system()` or to return the character string containing the command.}
-
-\item{lftp_settings}{named list. Use `create_lftp_settings()` to create.}
 }
 \value{
 The output of the `lftp` call or a character string of the `lftp`

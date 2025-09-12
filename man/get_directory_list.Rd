@@ -5,10 +5,7 @@
 \title{Download a list of all sub-directories of the GWAS Catalog FTP directory
 `summary_statistics/`}
 \usage{
-get_directory_list(lftp_settings = NA)
-}
-\arguments{
-\item{lftp_settings}{named list. Use `create_lftp_settings()` to create.}
+get_directory_list()
 }
 \value{
 A character vector containing all directories of

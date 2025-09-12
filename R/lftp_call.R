@@ -16,7 +16,6 @@
 #'   `https://lftp.yar.ru/lftp-man.html` for available commands.
 #' @param execute_system_call Logical. Whether to execute the call to `lftp`
 #'   with `system()` or to return the character string containing the command.
-#' @inheritParams download_all_accession_data
 #'
 #' @returns The output of the `lftp` call or a character string of the `lftp`
 #'   command when `execute_system_call` is set to `FALSE`
@@ -24,15 +23,19 @@
 lftp_call <- function(
     path_from_ftp_root = NA,
     lftp_command = NA,
-    execute_system_call = TRUE,
-    lftp_settings = NA
+    execute_system_call = TRUE
 ) {
+  
+  check_lftp_settings()
+  lftp_bin <- options()$gwascatftp.lftp_bin
+  use_proxy <- options()$gwascatftp.use_proxy
+  ftp_proxy <- options()$gwascatftp.ftp_proxy
+  ftp_root <- options()$gwascatftp.ftp_root
+  
   stopifnot("Have to enter a command for `lftp`!" = !is.na(lftp_command))
-  parse_lftp_settings(lftp_settings)
-
+  
   if (!is.na(path_from_ftp_root)) {
     ftp_path <- glue::glue("{ftp_root}/{path_from_ftp_root}")
-
   } else {
     ftp_path <- ftp_root
   }

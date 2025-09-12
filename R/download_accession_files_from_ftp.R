@@ -13,14 +13,17 @@ download_accession_files_from_ftp <- function(
     accession_file_links,
     download_directory = NA,
     create_accession_directory = FALSE,
-    overwrite_existing_files = FALSE,
-    lftp_settings = NA
+    overwrite_existing_files = FALSE
 ) {
   stopifnot(
     "Input must be a named list containing the accession number as name and the FTP links in the body." =
       is.list(accession_file_links) & all(!is.na(names(accession_file_links)))
   )
   stopifnot("Please provide a directory to store the downloaded files in." = !is.na(download_directory))
+  check_lftp_settings()
+  ftp_root <- options()$gwascatftp.ftp_root
+  
+  
   accession_name <- names(accession_file_links)
   accession_file_links <- unlist(accession_file_links, use.names = FALSE)
   if(isTRUE(create_accession_directory)) {
@@ -33,7 +36,7 @@ download_accession_files_from_ftp <- function(
     dir.create(download_directory)
   }
   accession_file_links_relative_paths <- gsub(
-    pattern = lftp_settings$ftp_root,
+    pattern = ftp_root,
     replacement = "",
     accession_file_links,
     fixed = TRUE
@@ -50,8 +53,7 @@ download_accession_files_from_ftp <- function(
     message(glue::glue("Downloading: `{file}`..."))
     lftp_call(
       lftp_command = download_file_command,
-      execute_system_call = TRUE,
-      lftp_settings = lftp_settings
+      execute_system_call = TRUE
     )
   }
   message(glue::glue("All files downloaded to: `{download_directory}`."))

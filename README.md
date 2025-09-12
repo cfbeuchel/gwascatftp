@@ -58,7 +58,8 @@ remotes::install_github("cfbeuchel/gwascatftp")
 
 This package requires an installation of [`lftp`](https://lftp.yar.ru/) and the
 path of the program's executable file. To get basic installation information
-from within the package, call the `install_lftp()` function.
+from within the package, call the `install_lftp()` function. The function will also 
+check whether `lftp` can be found in `$PATH` and will return the binary if found.
 
 ```r
 library(gwascatftp)
@@ -86,16 +87,50 @@ Before using the package, make sure you have `lftp` installed and know where the
 executable is located. When using `conda`, this should hopefully work on most
 systems.
 
-Due to interfacing with `lftp`, we need to create a simple list containing the
-basic settings for getting `lftp` to run.
+While the package tries to detect and set necessary settings at start-up, manual
+intervention might be necessary. For this, several functions are provided. See
+below for the recommended workflow for preparing your session.
+
+Check whether automatic setting recognition was successful.
 
 ```r
-# This returns a named list to be passed to functions calling `lftp`
-my_lftp_settings <- create_lftp_settings(
-  lftp_bin = "~/miniconda3/envs/lftp/bin/lftp", # Enter your path here!
-  use_proxy = FALSE, # When behind a HTTP proxy, set to TRUE
-  ftp_proxy = NA, # When behind a HTTP proxy, enter the link, e.g. http://proxy.my_uni.com:8080"
-  ftp_root = "ftp://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/"
+check_lftp_settings(verbose = TRUE)
+```
+
+Settings that were created automatically at startup are returned when calling
+`create_lftp_settings()` without any arguments.
+
+```r
+create_lftp_settings()
+```
+
+When `check_lftp_settings()` returned an error, you will have to manually create a
+settings object and then parse it. To do this, supply the necessary arguments to `create_lftp_settings()`,
+save the list in a variable and then use `parse_lftp_settings()` to complete the setup.
+
+```r
+# Create the settings object. Note that the `ftp_root` is already set to the argument
+# you see by default, so supplying it will most likely not be necessary
+my_settings <- create_lftp_settings(
+  lftp_bin = </FULL/PATH/TO/lftp>, 
+  use_proxy = FALSE, 
+  ftp_proxy = NULL, 
+  ftp_root = "ftp://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/" 
+  )
+
+# Transform the settings list to the options
+parse_lftp_settings(my_settings, check_settings = TRUE)
+```
+
+You can also automatically parse the settings when creating them.
+
+```r
+create_lftp_settings(
+  lftp_bin = </FULL/PATH/TO/lftp>, 
+  use_proxy = FALSE, 
+  ftp_proxy = NULL, 
+  ftp_root = "ftp://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/",
+  parse_settings = TRUE
 )
 ```
 
@@ -104,8 +139,8 @@ repeatedly downloading these files, we will download them once, save them in
 variables and supply those to the functions using them.
 
 ```r
-my_directory_list <- get_directory_list(lftp_settings = my_lftp_settings)
-my_harmonised_list <- get_harmonised_list(lftp_settings = my_lftp_settings)
+my_directory_list <- get_directory_list()
+my_harmonised_list <- get_harmonised_list()
 ```
 
 Now we can query the GWAS Catalog FTP server using accession names. The most
@@ -121,9 +156,8 @@ my_study_accession <- "GCST009541"
 download_all_accession_data(
     study_accession = my_study_accession,
     harmonised_list = my_harmonised_list,
-    directory_list = my_directory_list,
-    lftp_settings = my_lftp_settings,
-    download_directory = "/PATH/TO/DOWNLOAD/TO/",
+    directory_list = my_directory_list
+    download_directory = tempdir(), # Set your target directory here!
     create_accession_directory = TRUE,
     overwrite_existing_files = FALSE,
     return_meta_data = TRUE
@@ -142,8 +176,7 @@ my_mulltiple_study_accessions <- c("GCST009541", "GCST90204201")
 my_meta_data <- download_multiple_accession_meta_data(
   study_accessions = my_mulltiple_study_accessions, 
   harmonised_list = my_harmonised_list, 
-  directory_list = my_directory_list, 
-  lftp_settings = my_lftp_settings
+  directory_list = my_directory_list
 )
 ```
 

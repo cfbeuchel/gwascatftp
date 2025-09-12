@@ -18,6 +18,8 @@
 #' @param ftp_root Character string. FTP link to connect to using `lftp`.
 #'   Defaults to the GWAS Catalog FTP directory
 #'   `ftp://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/`
+#' @param parse_settings Logical. Whether or not to automaticall run `parse_lftp_settings()`
+#' on the input settings. Default is FALSE
 #'
 #' @seealso [lftp_call()]
 #'
@@ -25,22 +27,44 @@
 #'   to `lftp`
 #' @export
 create_lftp_settings <- function(
-    lftp_bin = "lftp",
-    use_proxy = FALSE,
-    ftp_proxy = NA,
-    ftp_root = "ftp://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/"
+    lftp_bin = install_lftp(),
+    use_proxy = NULL,
+    ftp_proxy = NULL,
+    ftp_root = "ftp://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/",
+    parse_settings = FALSE
 ) {
+  
+  if (is.null(use_proxy) & is.null(ftp_proxy)) {
+    
+    autodetect_proxy <- system2("echo", "$http_proxy", stdout = TRUE)
+    if (autodetect_proxy == "") {
+      use_proxy <- FALSE
+    } else {
+      use_proxy <- TRUE
+      ftp_proxy <- autodetect_proxy
+    }
+  }
+  
   lftp_settings <- list(
     lftp_bin,
     use_proxy,
     ftp_proxy,
     ftp_root
   )
-  names(lftp_settings) <- c(
-    "lftp_bin",
-    "use_proxy",
-    "ftp_proxy",
-    "ftp_root"
+  names(lftp_settings) <- paste(
+    "gwascatftp",
+    c(
+      "lftp_bin",
+      "use_proxy",
+      "ftp_proxy",
+      "ftp_root"
+    ),
+    sep = "."
   )
+  
+  if (parse_settings == TRUE) {
+    parse_lftp_settings(lftp_settings)
+  }
+  
   return(lftp_settings)
 }
