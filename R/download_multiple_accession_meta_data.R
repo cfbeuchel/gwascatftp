@@ -6,7 +6,7 @@
 #'
 #' @param study_accessions Character vector. GWAS Catalog study ID(s) to download
 #'   meta-data for. Must be an accession number beginning with “GCST”. Use the
-#'   package `{gwasrapidd}` or browse the GWAS Catalog website
+#'   package `\{gwasrapidd\}` or browse the GWAS Catalog website
 #'   (https://www.ebi.ac.uk/gwas/) to get accessions for studies you want to
 #'   download data from.
 #' @inheritParams download_all_accession_data

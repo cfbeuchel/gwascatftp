@@ -7,7 +7,7 @@
 install_lftp()
 }
 \value{
-Nothing. Prints a helpful message about where and how to install `lftp` from.
+If `lftp` is already installed and can be found via `whereis` system command, returns the full path to the binary. If not, it prints a helpful message about where and how to install `lftp` from.
 }
 \description{
 This package depends on the command-line program `lftp` that must be

@@ -9,7 +9,7 @@
 #'
 #' @param study_accession single character string Input. GWAS Catalog study ID
 #'   to download data for. Must be an accession number beginning with “GCST”.
-#'   Use the package `{gwasrapidd}` or browse the GWAS Catalog website
+#'   Use the package `\{gwasrapidd\}` or browse the GWAS Catalog website
 #'   (https://www.ebi.ac.uk/gwas/) to get accessions for studies you want to
 #'   download data from.
 #' @param harmonised_list character vector. Use `get_harmonised_list()` to
