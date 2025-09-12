@@ -5,9 +5,10 @@
 #' the package user, either globally, or locally using a local environment
 #' manager such as `conda`.
 #'
-#' @returns If `lftp` is already installed, returns the full path to the binary. If not, it prints a helpful message about where and how to install `lftp` from.
+#' @returns If `lftp` is already installed and can be found via `whereis` system command, returns the full path to the binary. If not, it prints a helpful message about where and how to install `lftp` from.
 #' @export
 install_lftp <- function() {
+  
   github_link <- "https://github.com/lavv17/lftp/releases"
   main_link <- "https://lftp.yar.ru/get.html"
   installation_message <- glue::glue(
@@ -16,17 +17,25 @@ install_lftp <- function() {
     "(e.g. `apt install lftp`) or use conda (e.g. `conda create -n lftp lftp`)."
   )
   
-  whereis_output <- system2("whereis", "lftp", stdout = TRUE)
-  whereis_output <- unlist(strsplit(whereis_output, split = " ", fixed = TRUE))
+  whereis_exit <- system2("whereis", "--help", stdout = NULL, stderr = NULL)
   
-  if (length(whereis_output) ==  1) {
+  if (whereis_exit == 1) {
     message(installation_message)
     return(NA_character_)
   }
+  
+  whereis_output <- system2("whereis", "lftp", stdout = TRUE, stderr = NULL)
+  whereis_output <- unlist(strsplit(whereis_output, split = " ", fixed = TRUE))
+  
+  if (length(whereis_output) <=  1) {
+    message(installation_message)
+    return(NA_character_)
+  }
+  
   lftp_bin <- whereis_output[2]
-  lftp_help <- system2(lftp_bin, "-h", stdout = TRUE)
+  lftp_exit <- system2(lftp_bin, "-h", stdout = NULL, stderr = NULL)
 
-  if (lftp_help[1] == "Usage: lftp [OPTS] <site>") {
+  if (lftp_exit == 0) {
     message(glue::glue("`lftp` installed on system. Use path: {lftp_bin}"))
     return(lftp_bin)
   } else {
