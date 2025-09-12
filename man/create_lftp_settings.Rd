@@ -8,7 +8,8 @@ create_lftp_settings(
   lftp_bin = install_lftp(),
   use_proxy = NULL,
   ftp_proxy = NULL,
-  ftp_root = "ftp://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/"
+  ftp_root = "ftp://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/",
+  parse_settings = FALSE
 )
 }
 \arguments{
@@ -30,6 +31,9 @@ specify the `[URL]`.}
 \item{ftp_root}{Character string. FTP link to connect to using `lftp`.
 Defaults to the GWAS Catalog FTP directory
 `ftp://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/`}
+
+\item{parse_settings}{Logical. Whether or not to automaticall run `parse_lftp_settings()`
+on the input settings. Default is FALSE}
 }
 \value{
 A named list containing the parameters necessary for making a call

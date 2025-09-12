@@ -4,13 +4,19 @@
 \alias{parse_lftp_settings}
 \title{Make `lftp` settings available}
 \usage{
-parse_lftp_settings(lftp_settings = create_lftp_settings())
+parse_lftp_settings(
+  lftp_settings = create_lftp_settings(),
+  check_settings = FALSE
+)
 }
 \arguments{
 \item{lftp_settings}{List. The settings to parse as session-wide options. By default
 this list is automatically created by calling `create_lftp_settings()` but when settings
 need to be manually adapted, the user needs to supply the custom settings
  to `create_lftp_settings()`.}
+
+\item{check_settings}{Logical. Whether or not to run `check_lftp_settings()` 
+on the parsed settings. Default is FALSE}
 }
 \value{
 Nothing. Check `options()` to see changes.

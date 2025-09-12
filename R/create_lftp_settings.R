@@ -18,6 +18,8 @@
 #' @param ftp_root Character string. FTP link to connect to using `lftp`.
 #'   Defaults to the GWAS Catalog FTP directory
 #'   `ftp://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/`
+#' @param parse_settings Logical. Whether or not to automaticall run `parse_lftp_settings()`
+#' on the input settings. Default is FALSE
 #'
 #' @seealso [lftp_call()]
 #'
@@ -28,7 +30,8 @@ create_lftp_settings <- function(
     lftp_bin = install_lftp(),
     use_proxy = NULL,
     ftp_proxy = NULL,
-    ftp_root = "ftp://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/"
+    ftp_root = "ftp://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/",
+    parse_settings = FALSE
 ) {
   
   if (is.null(use_proxy) & is.null(ftp_proxy)) {
@@ -58,5 +61,10 @@ create_lftp_settings <- function(
     ),
     sep = "."
   )
+  
+  if (parse_settings == TRUE) {
+    parse_lftp_settings(lftp_settings)
+  }
+  
   return(lftp_settings)
 }
