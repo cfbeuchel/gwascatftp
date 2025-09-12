@@ -7,15 +7,11 @@
 #' remote access of this file. See `https://www.ebi.ac.uk/gwas/docs/faq` for
 #' more information on harmonised data in the GWAS Catalog.
 #'
-#' @inheritParams download_all_accession_data
 #' @return A character vector containing the content of
 #'   `https://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/harmonised_list.txt`
 #' @export
-get_harmonised_list <- function(
-    lftp_settings = NA
-) {
+get_harmonised_list <- function() {
   lftp_call_for_harmonised_list <- lftp_call(
-    lftp_settings = lftp_settings,
     lftp_command = "cat harmonised_list.txt",
     execute_system_call = FALSE
   )

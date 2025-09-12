@@ -16,8 +16,7 @@
 download_multiple_accession_meta_data <- function(
     study_accessions,
     harmonised_list = NA,
-    directory_list = NA,
-    lftp_settings = NA
+    directory_list = NA
 ) {
   result_list <- vector("list", length = length(study_accessions))
   names(result_list) <- study_accessions
@@ -33,20 +32,21 @@ download_multiple_accession_meta_data <- function(
         study_accession = study_accession,
         harmonised_list = study_accession,
         directory_list = directory_list,
-        list_all_files = TRUE,
-        lftp_settings = lftp_settings
+        list_all_files = TRUE
       )
       stopifnot("Accession name mismatch in harmonized data!" = study_accession == names(harmonised_accession_file_links))
       all_file_links <- c(all_file_links, unlist(harmonised_accession_file_links, use.names = FALSE))
     }
     accession_file_links <- get_accession_file_links(
       study_accession = study_accession,
-      directory_list = directory_list,
-      lftp_settings = lftp_settings)
+      directory_list = directory_list
+    )
     stopifnot("Accession name mismatch in data!" = study_accession == names(accession_file_links))
     all_file_links <- c(all_file_links, unlist(accession_file_links, use.names = FALSE))
     result_list[[i]] <- all_file_links
-    raw_meta_data <- get_accession_meta_data(accession_file_links = result_list[i], lftp_settings = lftp_settings)
+    raw_meta_data <- get_accession_meta_data(
+      accession_file_links = result_list[i]
+    )
     parsed_meta_data <- parse_raw_meta_data(raw_meta_data)
     if(nrow(parsed_meta_data) == 0) {
       data.table::set(

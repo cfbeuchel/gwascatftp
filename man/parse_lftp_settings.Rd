@@ -4,17 +4,21 @@
 \alias{parse_lftp_settings}
 \title{Make `lftp` settings available}
 \usage{
-parse_lftp_settings(lftp_settings = NA)
+parse_lftp_settings(lftp_settings = create_lftp_settings())
 }
 \arguments{
-\item{lftp_settings}{named list. Use `create_lftp_settings()` to create.}
+\item{lftp_settings}{List. The settings to parse as session-wide options. By default
+this list is automatically created by calling `create_lftp_settings()` but when settings
+need to be manually adapted, the user needs to supply the custom settings
+ to `create_lftp_settings()`.}
 }
 \value{
-Local variables named after the elements of  containing the
+Nothing. Check `options()` to see changes.
 }
 \description{
-This function exports the values in `lftp_settings` to local variables in the
-function's parent environment.
+This function exports the values in `lftp_settings` to the session's options in the
+function's parent environment. This overrides all settings, so make sure the 
+list supplied to `lftp_settings` contains all neccessary elements!
 }
 \seealso{
 [create_lftp_settings()]

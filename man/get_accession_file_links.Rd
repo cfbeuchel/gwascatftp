@@ -4,11 +4,7 @@
 \alias{get_accession_file_links}
 \title{Find FTP links to all non-harmonised files for a GWAS Catalog study accession}
 \usage{
-get_accession_file_links(
-  study_accession,
-  directory_list = NA,
-  lftp_settings = NA
-)
+get_accession_file_links(study_accession, directory_list = NA)
 }
 \arguments{
 \item{study_accession}{single character string Input. GWAS Catalog study ID
@@ -20,8 +16,6 @@ download data from.}
 \item{directory_list}{character vector. Use `get_directory_list()` to create.
 Should be downloaded once and saved in a variable to be then passed to
 functions using this field.}
-
-\item{lftp_settings}{named list. Use `create_lftp_settings()` to create.}
 }
 \value{
 A named list containing a character string vector with the FTP links

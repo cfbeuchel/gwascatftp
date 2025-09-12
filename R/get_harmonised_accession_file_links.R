@@ -18,9 +18,12 @@ get_harmonised_accession_file_links <- function(
     study_accession,
     harmonised_list = NA,
     directory_list = NA,
-    list_all_files = TRUE,
-    lftp_settings = NA
+    list_all_files = TRUE
 ){
+  
+  check_lftp_settings()
+  ftp_root <- options()$gwascatftp.ftp_root
+  
   stopifnot("Have to supply accession and list!" = (!is.na(study_accession) | all(!is.na(directory_list))))
   if (
     isFALSE(
@@ -42,7 +45,7 @@ get_harmonised_accession_file_links <- function(
       value = TRUE
     )
     relative_path <- gsub("^\\.\\/", "", relative_path)
-    full_ftp_path <- glue::glue("{lftp_settings$ftp_root}{relative_path}")
+    full_ftp_path <- glue::glue("{ftp_root}{relative_path}")
     full_ftp_path <- clean_url(full_ftp_path)
     result_list <- list(full_ftp_path)
     names(result_list) <- study_accession
@@ -56,11 +59,10 @@ get_harmonised_accession_file_links <- function(
   harmonised_files_list <- lftp_call(
     path_from_ftp_root = harmonised_data_directory,
     lftp_command = "cls -1",
-    execute_system_call = TRUE,
-    lftp_settings = lftp_settings
+    execute_system_call = TRUE
   )
   harmonised_files_list <- gsub("@$", "", harmonised_files_list)
-  harmonised_files_full_links <- glue::glue("{lftp_settings$ftp_root}/{accession_bucket}/{study_accession}/harmonised/{harmonised_files_list}")
+  harmonised_files_full_links <- glue::glue("{ftp_root}/{accession_bucket}/{study_accession}/harmonised/{harmonised_files_list}")
   harmonised_files_full_links <- clean_url(harmonised_files_full_links)
   result_list <- list(harmonised_files_full_links)
   names(result_list) <- study_accession

@@ -8,8 +8,7 @@ get_harmonised_accession_file_links(
   study_accession,
   harmonised_list = NA,
   directory_list = NA,
-  list_all_files = TRUE,
-  lftp_settings = NA
+  list_all_files = TRUE
 )
 }
 \arguments{
@@ -32,8 +31,6 @@ functions using this field.}
 \item{list_all_files}{logical. `TRUE`/`FALSE` whether only the link to the
 harmonised summary statistic file (which is contained in `harmonised_list`)
 or all files in a study's `harmonised/` subdirectory should be returned.}
-
-\item{lftp_settings}{named list. Use `create_lftp_settings()` to create.}
 }
 \value{
 A named list containing a character string vector with the FTP links

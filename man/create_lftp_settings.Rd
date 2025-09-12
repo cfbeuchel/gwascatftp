@@ -5,9 +5,9 @@
 \title{Create the settings for calling `lftp`}
 \usage{
 create_lftp_settings(
-  lftp_bin = "lftp",
-  use_proxy = FALSE,
-  ftp_proxy = NA,
+  lftp_bin = install_lftp(),
+  use_proxy = NULL,
+  ftp_proxy = NULL,
   ftp_root = "ftp://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/"
 )
 }

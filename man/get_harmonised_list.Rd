@@ -4,10 +4,7 @@
 \alias{get_harmonised_list}
 \title{Save the list of all harmonised files from the GWAS Catalog}
 \usage{
-get_harmonised_list(lftp_settings = NA)
-}
-\arguments{
-\item{lftp_settings}{named list. Use `create_lftp_settings()` to create.}
+get_harmonised_list()
 }
 \value{
 A character vector containing the content of

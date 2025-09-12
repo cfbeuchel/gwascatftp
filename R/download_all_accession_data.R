@@ -20,7 +20,6 @@
 #' @param directory_list character vector. Use `get_directory_list()` to create.
 #'   Should be downloaded once and saved in a variable to be then passed to
 #'   functions using this field.
-#' @param lftp_settings named list. Use `create_lftp_settings()` to create.
 #' @param download_directory character string. Output file directory. Downloaded
 #'   files will retain their names.
 #' @param create_accession_directory logical. `TRUE`/`FALSE` for whether a new
@@ -44,7 +43,6 @@ download_all_accession_data <- function(
     study_accession,
     harmonised_list = NA,
     directory_list = NA,
-    lftp_settings = NA,
     download_directory = NA,
     create_accession_directory = FALSE,
     overwrite_existing_files = FALSE,
@@ -60,16 +58,15 @@ download_all_accession_data <- function(
       study_accession = study_accession,
       harmonised_list = study_accession,
       directory_list = directory_list,
-      list_all_files = TRUE,
-      lftp_settings = lftp_settings
+      list_all_files = TRUE
     )
     stopifnot("Accession name mismatch in harmonized data!" = study_accession == names(harmonised_accession_file_links))
     all_file_links <- c(all_file_links, unlist(harmonised_accession_file_links, use.names = FALSE))
   }
   accession_file_links <- get_accession_file_links(
     study_accession = study_accession,
-    directory_list = directory_list,
-    lftp_settings = lftp_settings)
+    directory_list = directory_list
+    )
   stopifnot("Accession name mismatch in data!" = study_accession == names(accession_file_links))
   all_file_links <- c(all_file_links, unlist(accession_file_links, use.names = FALSE))
   all_file_links <- list(all_file_links)
@@ -78,13 +75,11 @@ download_all_accession_data <- function(
     accession_file_links = all_file_links,
     download_directory = download_directory,
     create_accession_directory = create_accession_directory,
-    overwrite_existing_files = overwrite_existing_files,
-    lftp_settings = lftp_settings
+    overwrite_existing_files = overwrite_existing_files
   )
   if (isTRUE(return_meta_data)) {
     raw_meta_data <- get_accession_meta_data(
-      accession_file_links = all_file_links,
-      lftp_settings = lftp_settings
+      accession_file_links = all_file_links
     )
     meta_data <- parse_raw_meta_data(
       raw_meta_data_list = raw_meta_data

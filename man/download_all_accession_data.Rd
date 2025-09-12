@@ -8,7 +8,6 @@ download_all_accession_data(
   study_accession,
   harmonised_list = NA,
   directory_list = NA,
-  lftp_settings = NA,
   download_directory = NA,
   create_accession_directory = FALSE,
   overwrite_existing_files = FALSE,
@@ -31,8 +30,6 @@ functions using this field.}
 \item{directory_list}{character vector. Use `get_directory_list()` to create.
 Should be downloaded once and saved in a variable to be then passed to
 functions using this field.}
-
-\item{lftp_settings}{named list. Use `create_lftp_settings()` to create.}
 
 \item{download_directory}{character string. Output file directory. Downloaded
 files will retain their names.}

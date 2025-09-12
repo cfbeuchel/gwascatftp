@@ -7,8 +7,7 @@
 download_multiple_accession_meta_data(
   study_accessions,
   harmonised_list = NA,
-  directory_list = NA,
-  lftp_settings = NA
+  directory_list = NA
 )
 }
 \arguments{
@@ -27,8 +26,6 @@ functions using this field.}
 \item{directory_list}{character vector. Use `get_directory_list()` to create.
 Should be downloaded once and saved in a variable to be then passed to
 functions using this field.}
-
-\item{lftp_settings}{named list. Use `create_lftp_settings()` to create.}
 }
 \value{
 a data.table with n=`length(study_accessions)` rows. Studies with no

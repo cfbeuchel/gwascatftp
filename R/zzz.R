@@ -1,15 +1,17 @@
 .onLoad <- function(libname, pkgname) {
   
   packageStartupMessage("Trying to set required options")
-  lftp_path <- install_lftp()
+  lftp_path <- suppressMessages(install_lftp())
   if (!is.na(lftp_path)) {
-    packageStartupMessage("Found ´lftp´ executable on system. Automatically setting options up for usage")
+    packageStartupMessage("Found 'lftp' executable on system. Automatically setting options up for usage")
   } else {
-    packageStartupMessage("Did not find ´lftp´ executable on system. Please use `create_lftp_settings()` and then `parse_lftp_settings()`")
+    packageStartupMessage("Did not find 'lftp' executable on system. Please use 'create_lftp_settings()' and then 'parse_lftp_settings()'")
   }
   
-  lftp_settings <- create_lftp_settings(
-    lftp_bin = lftp_path
+  lftp_settings <- suppressMessages(
+    create_lftp_settings(
+      lftp_bin = lftp_path
+    )
   )
   op <- options()
   op.gwascatftp <- lftp_settings
@@ -29,7 +31,4 @@
   options(gwascatftp.use_proxy = NULL)
   .Options$gwascatftp.ftp_root <- NULL
   options(gwascatftp.ftp_root = NULL)
-  
-  
-  
 }

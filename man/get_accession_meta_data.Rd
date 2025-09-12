@@ -4,14 +4,12 @@
 \alias{get_accession_meta_data}
 \title{From a list of accession file links, download the raw meta-data}
 \usage{
-get_accession_meta_data(accession_file_links, lftp_settings = NA)
+get_accession_meta_data(accession_file_links)
 }
 \arguments{
 \item{accession_file_links}{A named list with a vector of character strings.
 Use the output of `get_harmonised_accession_file_links()` or
 `get_accession_file_links()` as the input for this function.}
-
-\item{lftp_settings}{named list. Use `create_lftp_settings()` to create.}
 }
 \value{
 A named list of raw and unparsed character strings containing the
