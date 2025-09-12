@@ -12,10 +12,11 @@ Suggests:
 Config/testthat/edition: 3
 Imports: 
     data.table,
+    fs,
     glue,
     yaml
 Authors@R: c(
     person("Carl", "Beuchel", , "carl.beuchel@charite.de", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-3224-3894"))
   )
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.3
